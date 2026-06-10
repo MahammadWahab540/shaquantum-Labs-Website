@@ -180,9 +180,9 @@ export default function Hero() {
 function EcosystemGraphic() {
   const sectors = [
     { label: "Education", angle: -60, color: "#0d9488", active: true },
-    { label: "MSMEs", angle: 30, color: "#94a3b8", active: false },
-    { label: "Agriculture", angle: 120, color: "#94a3b8", active: false },
-    { label: "Healthcare", angle: 210, color: "#94a3b8", active: false },
+    { label: "MSMEs", angle: 30, color: "#64748b", active: false },
+    { label: "Agriculture", angle: 120, color: "#64748b", active: false },
+    { label: "Healthcare", angle: 210, color: "#64748b", active: false },
   ];
 
   return (
@@ -191,42 +191,72 @@ function EcosystemGraphic() {
         viewBox="0 0 400 400"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="w-full h-full"
+        className="w-full h-full overflow-visible"
       >
-        {/* Outer ring */}
+        <defs>
+          <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#0f172a" floodOpacity="0.12" />
+          </filter>
+        </defs>
+
+        {/* Outer ring - medium slate for high contrast */}
         <motion.circle
           cx="200"
           cy="200"
           r="170"
-          stroke="#e2e8f0"
-          strokeWidth="1"
+          stroke="#94a3b8"
+          strokeWidth="1.5"
           strokeDasharray="6 6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.8 }}
         />
-        {/* Mid ring */}
+        {/* Mid ring - teal 600 at 40% opacity */}
         <motion.circle
           cx="200"
           cy="200"
           r="115"
-          stroke="#ccfbf1"
-          strokeWidth="1.5"
+          stroke="#0d9488"
+          strokeWidth="2"
+          opacity="0.4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9, duration: 0.8 }}
         />
-        {/* Inner ring */}
+        {/* Inner ring - teal 700 at 60% opacity */}
         <motion.circle
           cx="200"
           cy="200"
           r="60"
-          stroke="#5eead4"
-          strokeWidth="2"
+          stroke="#0f766e"
+          strokeWidth="2.5"
+          opacity="0.6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.8 }}
         />
+
+        {/* Connector lines (rendered UNDER the center node and outer cards) */}
+        {sectors.map((s, i) => {
+          const rad = (s.angle * Math.PI) / 180;
+          const cx = 200 + 115 * Math.cos(rad);
+          const cy = 200 + 115 * Math.sin(rad);
+          return (
+            <motion.line
+              key={`line-${s.label}`}
+              x1="200"
+              y1="200"
+              x2={cx}
+              y2={cy}
+              stroke={s.active ? "#0f766e" : "#cbd5e1"}
+              strokeWidth={s.active ? "2" : "1.2"}
+              strokeDasharray={s.active ? undefined : "4 4"}
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={{ pathLength: 1, opacity: 1 }}
+              transition={{ delay: 0.9 + i * 0.1, duration: 0.8, ease: "easeOut" }}
+            />
+          );
+        })}
 
         {/* Centre node */}
         <motion.circle
@@ -234,6 +264,9 @@ function EcosystemGraphic() {
           cy="200"
           r="32"
           fill="#0f766e"
+          stroke="#ffffff"
+          strokeWidth="2"
+          filter="url(#shadow)"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 1.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -283,37 +316,33 @@ function EcosystemGraphic() {
               }}
               style={{ transformOrigin: `${cx}px ${cy}px` }}
             >
-              {/* connector line */}
-              <line
-                x1="200"
-                y1="200"
-                x2={cx}
-                y2={cy}
-                stroke={s.active ? "#5eead4" : "#e2e8f0"}
-                strokeWidth={s.active ? "1.5" : "1"}
-                strokeDasharray={s.active ? undefined : "4 4"}
-              />
               {/* outer label dot */}
-              <circle cx={lx} cy={ly} r="4" fill={s.color} opacity="0.5" />
-              {/* main node */}
-              <circle
-                cx={cx}
-                cy={cy}
-                r="18"
-                fill={s.active ? "#f0fdfa" : "#f8fafc"}
-                stroke={s.active ? "#0f766e" : "#e2e8f0"}
-                strokeWidth={s.active ? "2" : "1"}
+              <circle cx={lx} cy={ly} r="5" fill={s.color} opacity={s.active ? "0.8" : "0.5"} />
+              
+              {/* Pill card container with soft shadow */}
+              <rect
+                x={cx - 42}
+                y={cy - 14}
+                width="84"
+                height="28"
+                rx="14"
+                fill={s.active ? "#f0fdfa" : "#ffffff"}
+                stroke={s.active ? "#0f766e" : "#cbd5e1"}
+                strokeWidth={s.active ? "2" : "1.5"}
+                filter="url(#shadow)"
               />
+              
+              {/* Full label text */}
               <text
                 x={cx}
-                y={cy + 3}
+                y={cy + 3.5}
                 textAnchor="middle"
-                fill={s.active ? "#0f766e" : "#94a3b8"}
-                fontSize="6"
+                fill={s.active ? "#0f766e" : "#334155"}
+                fontSize="8.5"
                 fontFamily="Outfit, sans-serif"
-                fontWeight="600"
+                fontWeight="700"
               >
-                {s.label.slice(0, 5)}
+                {s.label}
               </text>
             </motion.g>
           );

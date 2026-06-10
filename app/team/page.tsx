@@ -16,7 +16,10 @@ const directors = [
     role: "Co-Founder & Director",
     tag: "HOD — Artificial Intelligence & Data Science",
     institution: "Aditya College of Engineering, Madanapalle",
-    photo: null,
+    photo: "/Images/team/shafi-rajasaheb.png",
+    photoPosition: "center top",
+    photoScale: 1.2,
+    photoOffsetY: "-5%",
     bio: "Dr. R. Mahammad Shafi RajaSaheb brings academic leadership, AI expertise, research depth, and institutional understanding to ShaQuantum Labs. He supports technology strategy, AI direction, research architecture, and product credibility across the company's digital ecosystems.",
     strengths: ["AI & Data Science", "Applied Computing", "Academic Leadership", "Research Architecture"],
     sectors: ["Education", "AI-enabled systems", "Healthcare records", "Automation"],
@@ -27,7 +30,10 @@ const directors = [
     role: "Co-Founder & Director",
     tag: "Product Manager",
     institution: "MBA · Published Research in EV Logistics & Neo-Banking",
-    photo: null,
+    photo: "/Images/team/mahammad-wahab.png",
+    photoPosition: "53% top",
+    photoScale: 1.3,
+    photoOffsetY: "-10%",
     bio: "Mahammad Wahab brings product strategy, business execution, and market-readiness thinking to ShaQuantum Labs. He leads the commercialization lens for Pathwisse.com and helps convert real-world sector problems into scalable product ecosystems.",
     strengths: ["Product Management", "Business Strategy", "Market Research", "Ecosystem Execution"],
     sectors: ["Education", "Employability", "MSME growth", "Venture execution"],
@@ -38,14 +44,14 @@ const directors = [
 const team = [
   {
     name: "S Vishnu Vardhan",
-    role: "Operations & Business Lead",
+    role: "Product & Business Operations Lead",
     tag: "Founding Team",
     photo: "/Images/team/Vishnu 2.png",
     photoPosition: "center top",
     photoScale: 1.3,
     photoOffsetY: "-15%",
     bio: "Vishnu supports ShaQuantum Labs across operations, business coordination, project management, and marketing execution. His business-analysis background and field-oriented operating mindset make him a strong fit for building practical processes around the agriculture and operations side of ShaQuantum's future ecosystem roadmap.",
-    strengths: ["Operations Discipline", "Business Development", "Project Management", "Marketing Execution"],
+    strengths: ["Product Management", "Operations Discipline", "Business Development", "Project Management", "Marketing Execution"],
     sectors: ["Agriculture", "Agri-operations", "Rural market execution", "Partner coordination"],
     emphasis: "The operator who turns plans into repeatable systems.",
   },
@@ -232,6 +238,103 @@ function PersonCard({
   );
 }
 
+type Advisor = {
+  name: string;
+  role: string;
+  tag: string;
+  photo: string | null;
+  photoPosition?: string;
+  photoScale?: number;
+  photoOffsetY?: string;
+  bio: string;
+};
+
+const advisors: Advisor[] = [
+  {
+    name: "Manoharan Ponnambalam",
+    role: "Enterprise Technology & Delivery Advisor",
+    tag: "Advisory Team",
+    photo: "/Images/team/manoharan-ponnambalam.png",
+    bio: "25+ years in IT products, SaaS, enterprise applications, and quality processes, guiding Shaquantum Labs in building reliable, scalable, and institution-grade technology platforms.",
+  },
+  {
+    name: "Dr. Asadi Srinivasulu",
+    role: "AI, Data Science & Academic Research Advisor",
+    tag: "Advisory Team",
+    photo: "/Images/team/asadi-srinivasulu.png",
+    bio: "25+ years across AI, Data Science, teaching, research, and academic leadership, strengthening Shaquantum Labs' direction in learning intelligence, AI-enabled education, and outcome-based education alignment.",
+  },
+  {
+    name: "Sunil Pusapati",
+    role: "CEO & MD, BrikBuild Infra; Director, Pusapati Industrial",
+    tag: "Advisory Team",
+    photo: "/Images/team/sunil-pusapati.png",
+    bio: "Brings CEO-level industry insight to help Shaquantum Labs align student readiness, practical skills, workplace expectations, and employability outcomes.",
+  },
+  {
+    name: "Dr. Ravichandra Reddy",
+    role: "Academic Technology & Digital Transformation Advisor",
+    tag: "Advisory Team",
+    photo: "/Images/team/ravichandra-reddy.png",
+    bio: "Guides Shaquantum Labs on digital academic adoption, structured visibility, and practical outcome tracking for colleges and institutions.",
+  },
+];
+
+function AdvisorCard({ advisor }: { advisor: Advisor }) {
+  return (
+    <div
+      className="rounded-[2rem] overflow-hidden border border-slate-100 bg-white flex flex-col h-full"
+      style={{ boxShadow: "0 4px 32px -8px rgba(0,0,0,0.07)" }}
+    >
+      {/* Photo header */}
+      <div className="px-8 pt-10 pb-8 flex flex-col items-center text-center border-b bg-slate-50 border-slate-100">
+        {/* Avatar circle */}
+        <div
+          className="w-48 h-48 rounded-full overflow-hidden mb-5 flex-shrink-0 ring-4 ring-white"
+          style={{ boxShadow: "0 8px 24px -6px rgba(0,0,0,0.12)" }}
+        >
+          {advisor.photo ? (
+            <Image
+              src={advisor.photo}
+              alt={advisor.name}
+              width={500}
+              height={500}
+              quality={100}
+              className="w-full h-full object-cover"
+              style={{
+                objectPosition: advisor.photoPosition ?? "center 15%",
+                transform: advisor.photoScale && advisor.photoScale > 1
+                  ? `scale(${advisor.photoScale}) translateY(${advisor.photoOffsetY ?? "0%"})`
+                  : undefined,
+                transformOrigin: advisor.photoPosition ?? "center 15%",
+              }}
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200">
+              <span className="text-4xl font-bold tracking-tight text-slate-400">
+                {getInitials(advisor.name)}
+              </span>
+            </div>
+          )}
+        </div>
+
+        <h3 className="font-bold text-slate-900 tracking-tight text-lg leading-tight mb-1">
+          {advisor.name}
+        </h3>
+        <p className="text-sm font-semibold text-slate-600 mb-1">
+          {advisor.role}
+        </p>
+        <p className="text-xs text-slate-400">{advisor.tag}</p>
+      </div>
+
+      {/* Body */}
+      <div className="p-8 flex flex-col flex-1">
+        <p className="text-sm text-slate-500 leading-relaxed">{advisor.bio}</p>
+      </div>
+    </div>
+  );
+}
+
 export default function TeamPage() {
   return (
     <div className="pt-16">
@@ -301,6 +404,34 @@ export default function TeamPage() {
             {team.map((m, i) => (
               <Reveal key={m.name} delay={i * 0.07}>
                 <PersonCard person={m} />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Advisory team */}
+      <section className="py-24 bg-white border-t border-slate-100">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <Reveal>
+            <span className="inline-block text-xs font-semibold text-teal-600 tracking-widest uppercase mb-4">
+              Advisory Team
+            </span>
+          </Reveal>
+          <Reveal delay={0.05}>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tighter text-slate-900 mb-4 max-w-3xl">
+              Guided by leaders across academics, technology, industry, and innovation
+            </h2>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <p className="text-slate-500 max-w-4xl mb-12 leading-relaxed text-sm md:text-base">
+              Shaquantum Labs is guided by experienced leaders across enterprise technology delivery, AI and Data Science research, academic transformation, and industry operations, helping us build practical, credible, and outcome-focused products for institutions and learners.
+            </p>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {advisors.map((adv, i) => (
+              <Reveal key={adv.name} delay={i * 0.07}>
+                <AdvisorCard advisor={adv} />
               </Reveal>
             ))}
           </div>
