@@ -33,9 +33,14 @@ export default function Footer() {
             <div className="mb-6">
               <Logo variant="light" size="md" showTagline />
             </div>
-            <p className="text-sm leading-relaxed max-w-xs">
+            <p className="text-sm leading-relaxed max-w-xs mb-5">
               Building commercially scalable digital ecosystems for sectors that matter — education, MSMEs, agriculture, and healthcare.
             </p>
+            <address className="not-italic text-xs text-slate-500 leading-relaxed">
+              # 8-2-610/A/401, 4th Floor, Silver Tower Banjara<br />
+              Banjara Hills Rd No. 11, Hyderabad – 500034<br />
+              Telangana, India
+            </address>
           </div>
 
           {/* Links */}

@@ -61,6 +61,16 @@ const team = [
     photoScale: 1,
     initials: "BH",
   },
+  {
+    name: "Ankit Sunil",
+    role: "Finance & Revenue Operations",
+    tag: "Founding Team",
+    strength: "Finance Operations · Revenue Management · O2C · SAP",
+    photo: "/Images/team/Ankit Sunil.png",
+    photoPosition: "center 15%",
+    photoScale: 1,
+    initials: "AS",
+  },
 ];
 
 export default function TeamPreview() {

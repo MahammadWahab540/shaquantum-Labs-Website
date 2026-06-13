@@ -77,6 +77,18 @@ const team = [
     sectors: ["Institutional outreach", "Partnerships", "Product adoption", "Go-to-market execution"],
     emphasis: "The market-facing growth engine.",
   },
+  {
+    name: "Ankit Sunil",
+    role: "Finance & Revenue Operations",
+    tag: "Founding Team",
+    photo: "/Images/team/Ankit Sunil.png",
+    photoPosition: "center 15%",
+    photoScale: 1,
+    bio: "Ankit is a finance operations professional with experience across accounts receivable, order-to-cash operations, billing, collections, revenue management, and SAP-based finance workflows. At Pathwisse, he contributes to building strong financial and operational foundations, helping the team think clearly about revenue processes, institutional billing, and scalable business execution.",
+    strengths: ["Finance Operations", "Revenue Management", "O2C", "Billing & Collections", "SAP", "Business Operations"],
+    sectors: ["Institutional billing", "Revenue operations", "Business execution", "Pathwisse platform"],
+    emphasis: "Supports Pathwisse on finance operations, revenue processes, billing workflows, and scalable business execution.",
+  },
 ];
 
 function getInitials(name: string) {

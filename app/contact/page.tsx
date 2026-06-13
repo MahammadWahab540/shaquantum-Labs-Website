@@ -114,6 +114,17 @@ export default function ContactPage() {
                   </div>
 
                   <div>
+                    <h3 className="font-semibold text-slate-900 mb-3 text-sm tracking-tight">Address</h3>
+                    <address className="not-italic text-sm text-slate-600 leading-relaxed">
+                      # 8-2-610/A/401, 4th Floor<br />
+                      Silver Tower Banjara<br />
+                      Banjara Hills Rd No. 11<br />
+                      Hyderabad – 500034<br />
+                      Telangana, India
+                    </address>
+                  </div>
+
+                  <div>
                     <h3 className="font-semibold text-slate-900 mb-3 text-sm tracking-tight">Email</h3>
                     <a
                       href="mailto:contact@shaquantumlabs.com"
