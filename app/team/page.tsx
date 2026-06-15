@@ -266,7 +266,9 @@ const advisors: Advisor[] = [
     name: "Manoharan Ponnambalam",
     role: "Enterprise Technology & Delivery Advisor",
     tag: "Advisory Team",
-    photo: "/Images/team/manoharan-ponnambalam.png",
+    photo: "/Images/team/Manohar.png",
+    photoPosition: "center 15%",
+    photoScale: 1,
     bio: "25+ years in IT products, SaaS, enterprise applications, and quality processes, guiding Shaquantum Labs in building reliable, scalable, and institution-grade technology platforms.",
   },
   {
