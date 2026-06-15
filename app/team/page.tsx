@@ -450,20 +450,6 @@ export default function TeamPage() {
         </div>
       </section>
 
-      {/* Team note */}
-      <section className="py-16 bg-white border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <Reveal>
-            <div className="max-w-2xl">
-              <p className="text-xs font-semibold text-slate-400 tracking-widest uppercase mb-3">Note</p>
-              <p className="text-sm text-slate-500 leading-relaxed">
-                Profile photos will be added once approved by each team member. LinkedIn profiles and detailed credentials will be verified and published before the public site launch. Information here is based on verified company records and team-provided roles.
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* CTA */}
       <section className="py-20 bg-slate-50 border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
